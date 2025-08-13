@@ -15,8 +15,8 @@ I leveraged existing Microsoft partner Azure credits to deploy a new monitoring 
 ### Key Technologies Used
 - Microsoft Azure Virtual Machines
 - Azure Networking (VNet, Subnets, Network Security Groups, Firewall Rules)
-- [Name of the Network Application, e.g., Ubiquiti UniFi Controller]
-- PowerShell for VM configuration
+- Ubiquiti Network Application (Controller)
+
 
 ### Outcome/Business Impact
 Successfully deployed a resilient and scalable cloud-based monitoring solution while **reducing monthly operational costs by R 1800,** leveraging existing company resources to achieve the same functionality for free.
