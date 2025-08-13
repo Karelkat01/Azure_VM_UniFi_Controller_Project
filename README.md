@@ -48,7 +48,7 @@ The following diagram illustrates the secure remote access architecture implemen
        │  - UniFi Controller│
        └─────┬──────────────┘
              │
-      VPN Subnet: 10.10.10.0/24
+      VPN Subnet: 20.20.1.0/24
              │
              ▼
          Private RDP IP
