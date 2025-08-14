@@ -13,7 +13,6 @@ I leveraged existing Microsoft partner Azure credits to deploy a new monitoring 
 - Microsoft Azure Virtual Machines (e.g., B2ms with 2 vCPUs and 8GB RAM)
 - Azure Networking (VNet, Subnets, Network Security Groups, Firewall Rules)
 - Ubiquiti UniFi Network Controller
-- PowerShell for VM configuration
 - SSH and UniFi Layer 2 discovery
 - Routing and Remote Access Service (RRAS)
 
