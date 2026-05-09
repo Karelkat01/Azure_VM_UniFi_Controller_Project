@@ -1,61 +1,146 @@
-# Azure Multi-Site Network Monitoring Solution
+# Azure-Hosted UniFi Network Monitoring Solution
 
-### Overview
-This project demonstrates the deployment of a centralized network monitoring application on an Azure Virtual Machine, moving a third-party service in-house to achieve significant cost savings and improve administrative control.
+![Azure](https://img.shields.io/badge/Platform-Microsoft_Azure-blue)
+![UniFi](https://img.shields.io/badge/Network-UniFi-0559C9)
+![Windows Server](https://img.shields.io/badge/OS-Windows_Server-0078D6)
+![Status](https://img.shields.io/badge/Project-Production-success)
 
-### The Problem
-The company was paying a third-party provider R 1800 per month for a hosted network monitoring service. This was an unnecessary operational cost and, due to a lack of a proper handover, we had **no administrative access to the existing controller,** which created a significant migration challenge.
+---
 
-### The Solution
-I leveraged existing Microsoft partner Azure credits to deploy a new monitoring server on an Azure VM. This move brought the hosting service in-house, eliminated the recurring third-party expense, and allowed for full administrative control of the system, despite the initial lack of access.
+## Overview
+This project demonstrates the deployment and migration of a centralised UniFi Network Application monitoring environment to a Microsoft Azure Virtual Machine.
 
-### Key Technologies Used
-- Microsoft Azure Virtual Machines (e.g., B2ms with 2 vCPUs and 8GB RAM)
-- Azure Networking (VNet, Subnets, Network Security Groups, Firewall Rules)
-- Ubiquiti UniFi Network Controller
-- SSH and UniFi Layer 2 discovery
-- Routing and Remote Access Service (RRAS)
+The objective was to bring a third-party hosted monitoring solution in-house to reduce operational costs, improve administrative control, and centralise the management of multiple remote client sites.
 
-### Implementation/Architecture
-- Selected and provisioned a `B2ls v2` Azure Virtual Machine, chosen for its cost-effective performance and sufficient resources.
-- **Justification for VM Choice:** The UniFi Network Controller's system requirements are modest, typically needing at least 2 GB of RAM. The `B2ls v2` VM, with its 2 vCPUs and 4 GB of RAM, provides a comfortable performance buffer for a small to medium-sized network while remaining a highly cost-effective "burstable" solution.
-- Configured Azure networking and Network Security Group (NSG) rules to allow secure access.
-- Installed and configured the UniFi Network Controller application.
-- Deployed and configured the Routing and Remote Access Service (RRAS) on the Azure VM to provide secure remote access.
-- Due to the lack of a proper handover, I had to manually adopt all existing UniFi equipment. I successfully used a combination of **SSH to restore devices to factory default** and the **UniFi Layer 2 discovery tool on a mobile device** to discover and adopt all hardware.
-- The new controller was then configured as per all clients' existing configurations to ensure a seamless and transparent transition with no loss of service.
-- Configured the controller to monitor and manage all remote sites.
+---
 
-### Secure Azure VM Architecture (Diagram)
-The following diagram illustrates the secure remote access architecture implemented for this project. Clients connect via a VPN to the Azure VM, which acts as a secure jump box, allowing them to access resources via RDP.
+# The Problem
 
-              Internet
-                 │
-         [Client Device]
-          ┌─────────────┐
-          │ VPN Client  │
-          │ (FortiClient│
-          │ or Windows) │
-          └─────┬───────┘
-                │ VPN SSTP (443)
-                │
-                ▼
-       ┌────────────────────┐
-       │ Azure VM (Windows) │
-       │  - RRAS VPN Server │
-       │  - RDP Server      │
-       │  - UniFi Controller│
-       └─────┬──────────────┘
-             │
-      VPN Subnet: 20.20.1.0/24
-             │
-             ▼
-         Private RDP IP
-             │
-             ▼
-      Client Device connects to
-      UniFi Controller via RDP
-      or browser securely
+The company was paying approximately **R1 800 per month** to a third-party provider for hosted UniFi Network Application services.
 
-### Outcome/Business Impact
-Successfully deployed a resilient and scalable cloud-based monitoring solution while **reducing monthly operational costs by R 1800,** leveraging existing company resources to achieve the same functionality for free.
+In addition to the ongoing operational cost, there was no proper handover from the previous provider, resulting in:
+- No administrative access to the existing controller
+- Limited visibility into the deployed infrastructure
+- Increased operational risk
+- Difficulty onboarding and managing existing client environments
+
+This created a significant migration challenge, as all existing UniFi devices needed to be rediscovered, reset, and manually adopted into the new controller environment.
+
+---
+
+# The Solution
+
+I deployed a new centralised UniFi Network Application environment on a Microsoft Azure Virtual Machine using existing Microsoft partner Azure credits.
+
+The migration:
+- Eliminated the recurring third-party hosting expense
+- Restored full administrative control
+- Centralised management of all client sites
+- Improved scalability and long-term maintainability
+- Allowed secure remote management from both desktop and mobile platforms
+
+---
+
+# Technologies Used
+
+- Microsoft Azure Virtual Machines
+- Azure Virtual Networking (VNet, Subnets, NSGs)
+- UniFi Network Application
+- SSH Device Management
+- UniFi Layer 2 Discovery
+- Windows Server RRAS (Routing and Remote Access Service)
+- Remote Desktop Services (RDP)
+- SSTP VPN Connectivity
+
+---
+
+# Implementation & Architecture
+
+## Azure VM Deployment
+- Provisioned and configured a cost-effective Azure Virtual Machine for hosting the UniFi Network Application.
+- Configured Azure networking, firewall policies, and Network Security Group (NSG) rules to securely expose only the required services.
+- Implemented secure remote administration access using RRAS VPN services.
+
+## VM Sizing Justification
+The UniFi Network Application has relatively modest system requirements for small-to-medium environments.
+
+The selected Azure VM provided:
+- 2 vCPUs
+- 4 GB RAM
+- Burstable performance
+- Low operational overhead
+- Sufficient resources for multiple remote sites
+
+This allowed the environment to remain cost-effective while maintaining stable controller performance.
+
+## UniFi Migration Process
+Due to the absence of administrative credentials and proper documentation from the previous provider:
+- Existing UniFi devices had to be manually rediscovered
+- SSH was used to factory reset inaccessible devices
+- UniFi Layer 2 Discovery tools were used to identify devices on-site
+- Devices were manually adopted into the new centralised controller
+- Existing configurations were recreated to ensure a seamless migration experience for clients
+
+The migration was completed successfully with no major downtime or service interruption.
+
+---
+
+# UniFi Access Architecture
+
+The following diagram illustrates how UniFi devices and administrators securely interact with the Azure-hosted UniFi controller.
+
+```mermaid
+graph TD
+
+A[Site Manager Browser] -->|HTTPS| B[Azure Hosted UniFi Controller]
+C[UniFi Mobile App] -->|HTTPS| B
+D[Remote UniFi Devices] -->|Inform & Adoption| B
+E[IT Administrator] -->|VPN/RDP| B
+```
+
+---
+
+# Skills Demonstrated
+
+- Cloud Infrastructure Deployment
+- Azure Virtual Machine Administration
+- Network Security & Firewall Configuration
+- VPN & Secure Remote Access
+- UniFi Controller Migration
+- Infrastructure Troubleshooting
+- Device Recovery & Re-Adoption
+- Systems Administration
+- Centralised Network Monitoring
+- Cost Optimisation
+- Technical Documentation
+
+---
+
+# Outcome / Business Impact
+
+The project successfully delivered a resilient and scalable cloud-hosted UniFi Network Application solution capable of managing multiple remote client sites from a single centralised environment.
+
+Key outcomes included:
+- Reduction of approximately **R1 800 per month** in recurring operational costs
+- Restoration of full administrative control
+- Improved remote management capabilities
+- Centralised visibility across all client sites
+- Improved long-term scalability and maintainability
+
+The solution continues to provide stable and secure centralised network management while leveraging existing company cloud resources effectively.
+
+---
+
+# Lessons Learned
+
+- The importance of proper infrastructure documentation and credential management
+- Real-world challenges involved in migrating UniFi environments without controller access
+- Benefits of centralised cloud-hosted network management
+- Importance of secure remote administration practices
+- Practical implementation of Azure networking and remote access services
+
+---
+
+# Project Status
+
+Successfully deployed and actively used for centralised multi-site management.
