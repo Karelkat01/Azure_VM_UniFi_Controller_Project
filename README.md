@@ -48,6 +48,7 @@ The migration:
 - UniFi Network Application
 - SSH Device Management
 - UniFi Layer 2 Discovery
+- DHCP Option 43 (Vendor)
 - Windows Server RRAS (Routing and Remote Access Service)
 - Remote Desktop Services (RDP)
 - SSTP VPN Connectivity
@@ -75,7 +76,8 @@ This allowed the environment to remain cost-effective while maintaining stable c
 
 ## UniFi Migration Process
 Due to the absence of administrative credentials and proper documentation from the previous provider:
-- Existing UniFi devices had to be manually rediscovered
+- DHCP Option 43 was utilised for auto-discovery and adoption to the new controller
+- Existing UniFi devices had to be manually rediscovered if DHCP option 43 failed 
 - SSH was used to factory reset inaccessible devices
 - UniFi Layer 2 Discovery tools were used to identify devices on-site
 - Devices were manually adopted into the new centralised controller
