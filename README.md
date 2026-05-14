@@ -47,7 +47,7 @@ The migration:
 - Azure Virtual Networking (VNet, Subnets, NSGs)
 - UniFi Network Application
 - SSH Device Management
-- UniFi Layer 2 Discovery
+- UniFi Layer 3 Discovery
 - DHCP Option 43 (Vendor)
 - Windows Server RRAS (Routing and Remote Access Service)
 - Remote Desktop Services (RDP)
