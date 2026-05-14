@@ -18,7 +18,7 @@ The objective was to bring a third-party hosted monitoring solution in-house to 
 
 The company was paying approximately **R1 800 per month** to a third-party provider for hosted UniFi Network Application services.
 
-In addition to the ongoing operational cost, there was no proper handover from the previous provider, resulting in:
+In addition to the ongoing operational cost, absence of handover and limited access to existing controller environment resulting in:
 - No administrative access to the existing controller
 - Limited visibility into the deployed infrastructure
 - Increased operational risk
@@ -75,7 +75,7 @@ The selected Azure VM provided:
 This allowed the environment to remain cost-effective while maintaining stable controller performance.
 
 ## UniFi Migration Process
-Due to the absence of administrative credentials and proper documentation from the previous provider:
+Due to absence of handover and limited access to existing controller environment:
 - DHCP Option 43 was utilised for auto-discovery and adoption to the new controller
 - Existing UniFi devices had to be manually rediscovered if DHCP option 43 failed 
 - SSH was used to factory reset inaccessible devices
