@@ -23,9 +23,7 @@ In addition to the ongoing operational cost, absence of handover and limited acc
 - Limited visibility into the deployed infrastructure
 - Increased operational risk
 - Difficulty onboarding and managing existing client environments
-
-This created a significant migration challenge, as all existing UniFi devices needed to be rediscovered, reset, and manually adopted into the new controller environment.
-
+  
 ---
 
 # The Solution
